@@ -7,8 +7,30 @@ function App() {
     <>
       <div className="container mt-4">
         <h1>Grocery Receipts</h1>
+
+        {/* Buttons Section */}
+        <div className="mb-2">
+          <div className="d-flex justify-content-between gap-2">
+            <button className="btn btn-success w-25">
+              Add
+            </button>
+            <button className="btn btn-info w-25">
+              View
+            </button>
+            <button className="btn btn-warning w-25">
+              Edit
+            </button>
+            <button className="btn btn-danger w-25">
+              Delete
+            </button>
+          </div>
+          <button className="btn btn-primary btn-lg w-100 my-2">
+            View All
+          </button>
+        </div>
+
         {receiptData.map((receipt, index) => (
-          <div key={index} className="card my-3">
+          <div key={index} className="card my-2">
             <div className="card-body">
               <h2 className="card-title">
                 Receipt #: {receipt.receiptNumber}
