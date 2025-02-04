@@ -1,0 +1,67 @@
+[
+    {
+      "receiptNumber": 1,
+      "date": "2025-02-03",
+      "items": [
+        {
+          "name": "Apple",
+          "quantity": 2,
+          "price": 1.50,
+          "gst": 0.075,
+          "pst": 0.07,
+          "gstTax": 0.225,
+          "pstTax": 0.21,
+          "totalPriceBeforeTax": 3.00,
+          "totalPriceAfterTax": 3.435
+        },
+        {
+          "name": "Water Bottle",
+          "quantity": 1,
+          "price": 1.00,
+          "gst": 0.075,
+          "pst": 0.07,
+          "gstTax": 0.075,
+          "pstTax": 0.07,
+          "totalPriceBeforeTax": 1.00,
+          "totalPriceAfterTax": 1.145
+        }
+      ],
+      "totalBeforeTax": 4.00,
+      "totalGST": 0.30,
+      "totalPST": 0.28,
+      "totalAfterTax": 4.58
+    },
+    {
+        "receiptNumber": 2,
+        "date": "2025-02-03",
+        "items": [
+          {
+            "name": "Apple",
+            "quantity": 2,
+            "price": 1.50,
+            "gst": 0.075,
+            "pst": 0.07,
+            "gstTax": 0.225,
+            "pstTax": 0.21,
+            "totalPriceBeforeTax": 3.00,
+            "totalPriceAfterTax": 3.435
+          },
+          {
+            "name": "Water Bottle",
+            "quantity": 1,
+            "price": 1.00,
+            "gst": 0.075,
+            "pst": 0.07,
+            "gstTax": 0.075,
+            "pstTax": 0.07,
+            "totalPriceBeforeTax": 1.00,
+            "totalPriceAfterTax": 1.145
+          }
+        ],
+        "totalBeforeTax": 4.00,
+        "totalGST": 0.30,
+        "totalPST": 0.28,
+        "totalAfterTax": 4.58
+      }
+  ]
+  
