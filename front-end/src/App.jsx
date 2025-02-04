@@ -6,6 +6,7 @@ import { Button, Modal, Form } from 'react-bootstrap'
 
 function App() {
   const [viewReceipts, setViewReceipts] = useState(false);
+  const [myReceipts, setMyReceipts] = useState(receiptData);
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
@@ -26,6 +27,14 @@ function App() {
       alert("Receipt not found!");
     }
   }
+
+  const handleDeleteReceipt = () => {
+    const receiptToDelete = {receiptNumber: parseInt(receiptNumber)}
+    const updatedReceipts = viewReceipts.filter(receipt => receipt.receiptNumber !== receiptToDelete.receiptNumber)
+    setMyReceipts(updatedReceipts)
+    setShowDeleteModal(false);
+  }
+  
 
   return (
     <>
@@ -138,6 +147,28 @@ function App() {
                 </Button>
               </Modal.Footer>
             </Modal>
+        }
+
+        {/* Confirm Delete Modal */}
+        { showConfirmDeleteModal &&
+          <Modal show={showConfirmDeleteModal} onHide={() => setShowConfirmDeleteModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                Confirm Deletion
+              </Modal.Title>
+              <Modal.Body>
+                <p>Are you sure you want to delete Receipt #: {receiptToDelete.receiptNumber} from Date: {receiptToDelete.date}?</p>
+              </Modal.Body>
+            </Modal.Header>
+            <Modal.Footer>
+              <Button variant="danger" onClick={handleDeleteReceipt()}>
+                Delete
+              </Button>
+              <Button variant="secondary" onClick={() => setShowConfirmDeleteModal(false)}>
+                Cancel
+              </Button>
+            </Modal.Footer>
+          </Modal>
         }
 
         {/* Receipts */}
