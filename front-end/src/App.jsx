@@ -59,7 +59,9 @@ function App() {
                       <th>Item #</th>
                       <th>Name</th>
                       <th>Quantity</th>
+                      <th>&nbsp;</th>
                       <th>Price</th>
+                      <th>&nbsp;</th>
                       <th>Item(s) Before Tax</th>
                     </tr>
                   </thead>
@@ -69,8 +71,10 @@ function App() {
                         <td>{++itemIndex}</td>
                         <td>{item.name}</td>
                         <td>{item.quantity}</td>
+                        <td>x</td>
                         <td>${item.price.toFixed(2)}</td>
-                        <td>${(item.price * item.quantity).toFixed(2)}</td>
+                        <td>=</td>
+                        <td className="d-flex justify-content-end">${(item.price * item.quantity).toFixed(2)}</td>
                       </tr>
                     ))}
                   </tbody>
