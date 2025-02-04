@@ -1,25 +1,43 @@
 import './App.css'
 import receiptData from './data/receipts.json';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
     <>
-      <h1>Grocery Receipts</h1>
-      <ul>
+      <div className="container mt-4">
+        <h1>Grocery Receipts</h1>
         {receiptData.map((receipt, index) => (
-          <li key={index}>
-            <h2>Receipt # {receipt.receiptNumber}</h2>
-            <p>Date: {receipt.date}</p>
-            <ul>
-              {receipt.items.map((item, itemIndex) => (
-                <li key={itemIndex}>
-                  {item.name} - {item.quantity} x ${item.price} - ${(item.quantity * item.price).toFixed(2)}
-                </li>
-              ))}
-            </ul>
-          </li>
+          <div key={index} className="card my-3">
+            <div className="card-body">
+              <h2 className="card-title">
+                Receipt #: {receipt.receiptNumber}
+              </h2>
+              <p className="card-body">
+                Date: {receipt.date}
+                </p>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {receipt.items.map((item, itemIndex) => (
+                      <tr key={itemIndex}>
+                        <td>{item.name}</td>
+                        <td>{item.quantity}</td>
+                        <td>{item.price}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </>
   )
 }
