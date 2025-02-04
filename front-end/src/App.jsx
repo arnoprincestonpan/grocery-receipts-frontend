@@ -30,12 +30,48 @@ function App() {
                       <tr key={itemIndex}>
                         <td>{item.name}</td>
                         <td>{item.quantity}</td>
-                        <td>{item.price}</td>
+                        <td>${item.price.toFixed(2)}</td>
                         <td>${(item.price * item.quantity).toFixed(2)}</td>
                       </tr>
                     ))}
                   </tbody>
                 </table>
+                <div className="container">
+                    <div className="row">
+                      <div className="col">
+                        <ul className="list-group list-group-flush">
+                          <li className="list-group-item">
+                            Total P.S.T.:
+                          </li>
+                          <li className="list-group-item">
+                            Total G.S.T.:
+                          </li>
+                          <li className="list-group-item">
+                            Total Before Taxes:
+                          </li>
+                          <li className="list-group-item">
+                            <strong>Total After Taxes:</strong>
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="col">
+                      <ul className="list-group list-group-flush">
+                          <li className="list-group-item">
+                            ${receipt.totalPST.toFixed(2)}
+                          </li>
+                          <li className="list-group-item">
+                            ${receipt.totalGST.toFixed(2)}
+                          </li>
+                          <li className="list-group-item">
+                            ${receipt.totalBeforeTax.toFixed(2)}
+                          </li>
+                          <li className="list-group-item">
+                            <strong>${receipt.totalAfterTax.toFixed(2)}</strong>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                </div>
             </div>
           </div>
         ))}
