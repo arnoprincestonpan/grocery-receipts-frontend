@@ -19,7 +19,7 @@ function App() {
   const [receiptToDelete, setReceiptToDelete] = useState(null);
 
   const checkReceiptNumber = () => {
-    const foundReceipt = receiptData.find(receipt => receipt.receiptNumber === parseInt(receiptNumber))
+    const foundReceipt = myReceipts.find(receipt => receipt.receiptNumber === parseInt(receiptNumber))
     if(foundReceipt){
       setReceiptToDelete(foundReceipt);
       setShowConfirmDeleteModal(true);
@@ -29,10 +29,18 @@ function App() {
   }
 
   const handleDeleteReceipt = () => {
-    const receiptToDelete = {receiptNumber: parseInt(receiptNumber)}
-    const updatedReceipts = viewReceipts.filter(receipt => receipt.receiptNumber !== receiptToDelete.receiptNumber)
-    setMyReceipts(updatedReceipts)
-    setShowDeleteModal(false);
+    if(!receiptToDelete){
+      console.error("No receipt selected for deletion.");
+      return;
+    }
+    const updatedReceipts = myReceipts.filter(receipt => receipt.receiptNumber !== receiptToDelete.receiptNumber);
+    setMyReceipts(updatedReceipts);
+
+    // Since JSON is local storage we have to stringfy
+    localStorage.setItem('myReceipts', JSON.stringify(updatedReceipts))
+
+    setShowConfirmDeleteModal(false);
+    setReceiptToDelete(null);
   }
   
 
@@ -161,7 +169,7 @@ function App() {
               </Modal.Body>
             </Modal.Header>
             <Modal.Footer>
-              <Button variant="danger" onClick={handleDeleteReceipt()}>
+              <Button variant="danger" onClick={handleDeleteReceipt}>
                 Delete
               </Button>
               <Button variant="secondary" onClick={() => setShowConfirmDeleteModal(false)}>
@@ -173,7 +181,7 @@ function App() {
 
         {/* Receipts */}
 
-        {viewReceipts && receiptData.map((receipt, index) => (
+        {viewReceipts && myReceipts.map((receipt, index) => (
           <div key={index} className="card my-2">
             <div className="card-body">
               <h2 className="card-title">
