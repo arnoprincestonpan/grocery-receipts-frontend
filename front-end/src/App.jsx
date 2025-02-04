@@ -2,7 +2,7 @@ import './App.css'
 import receiptData from './data/receipts.json';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from 'react';
-import { Button, Modal } from 'react-bootstrap'
+import { Button, Modal, Form } from 'react-bootstrap'
 
 function App() {
   const [viewReceipts, setViewReceipts] = useState(false);
@@ -10,8 +10,10 @@ function App() {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  // Delete Modal States
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [receiptNumber, setReceiptNumber] = useState("");
 
   return (
     <>
@@ -102,7 +104,17 @@ function App() {
               <Modal.Header closeButton>
                 <Modal.Title>Delete Receipt</Modal.Title>
                 <Modal.Body>
-                  
+                  <Form>
+                    <Form.Group>
+                      <Form.Label>Receipt Number</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="Enter Receipt Number"
+                        value={receiptNumber}
+                        onChange={(e) => setReceiptNumber(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Form>
                 </Modal.Body>
               </Modal.Header>
               <Modal.Footer>
