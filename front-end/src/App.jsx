@@ -6,6 +6,10 @@ import { Button, Modal } from 'react-bootstrap'
 
 function App() {
   const [viewReceipts, setViewReceipts] = useState(false);
+
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
 
@@ -18,13 +22,13 @@ function App() {
           {/* Buttons Section */}
           <div className="mb-2">
             <div className="d-flex justify-content-between gap-2">
-              <Button className="w-25" variant="success">
+              <Button className="w-25" variant="success" onClick={() => setShowAddModal(!showAddModal)}>
                 Add
               </Button>
-              <Button className="w-25" variant="info">
+              <Button className="w-25" variant="info" onClick={() => setShowViewModal(!showViewModal)}>
                 View
               </Button>
-              <Button className="w-25" variant="warning">
+              <Button className="w-25" variant="warning" onClick={() => setShowEditModal(!showEditModal)}>
                 Edit
               </Button>
               <Button className="w-25" variant="danger" onClick={() => setShowDeleteModal(!showDeleteModal)}>
@@ -37,10 +41,76 @@ function App() {
           </div>
         </div>
 
+        {/* Add Modal */}
+
+        {showAddModal && 
+            <Modal show={showAddModal} onHide={() => setShowAddModal(false)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Add Receipt</Modal.Title>
+                <Modal.Body>
+                  
+                </Modal.Body>
+              </Modal.Header>
+              <Modal.Footer>
+                <Button variant="danger" onClick={() => setShowAddModal(false)}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+        }
+
+        {/* View Modal */}
+
+        {showViewModal && 
+            <Modal show={showViewModal} onHide={() => setShowViewModal(false)}>
+              <Modal.Header closeButton>
+                <Modal.Title>View Receipt</Modal.Title>
+                <Modal.Body>
+                  
+                </Modal.Body>
+              </Modal.Header>
+              <Modal.Footer>
+                <Button variant="danger" onClick={() => setShowViewModal(false)}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+        }
+
+        {/* Edit Modal */}
+
+        {showEditModal && 
+            <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Edit Receipt</Modal.Title>
+                <Modal.Body>
+                  
+                </Modal.Body>
+              </Modal.Header>
+              <Modal.Footer>
+                <Button variant="danger" onClick={() => setShowEditModal(false)}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+        }
+
         {/* Delete Modal */}
 
         {showDeleteModal && 
-            <h1>HEY</h1>
+            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Delete Receipt</Modal.Title>
+                <Modal.Body>
+                  
+                </Modal.Body>
+              </Modal.Header>
+              <Modal.Footer>
+                <Button variant="danger" onClick={() => setShowDeleteModal(false)}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
         }
 
         {/* Receipts */}
