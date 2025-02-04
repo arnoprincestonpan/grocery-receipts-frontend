@@ -2,47 +2,48 @@ import './App.css'
 import receiptData from './data/receipts.json';
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useState } from 'react';
-
-function addReceipt(){
-  console.log("Add Receipt");
-
-}
-
+import { Button, Modal } from 'react-bootstrap'
 
 function App() {
-
   const [viewReceipts, setViewReceipts] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
 
   return (
     <>
       <div className="container">
-        
         {/* Title & Menu */}
         <div className="container border-bottom">
           <h1>Grocery Receipts</h1>
           {/* Buttons Section */}
           <div className="mb-2">
             <div className="d-flex justify-content-between gap-2">
-              <button className="btn btn-success w-25">
+              <Button className="w-25" variant="success">
                 Add
-              </button>
-              <button className="btn btn-info w-25">
+              </Button>
+              <Button className="w-25" variant="info">
                 View
-              </button>
-              <button className="btn btn-warning w-25">
+              </Button>
+              <Button className="w-25" variant="warning">
                 Edit
-              </button>
-              <button className="btn btn-danger w-25">
+              </Button>
+              <Button className="w-25" variant="danger" onClick={() => setShowDeleteModal(!showDeleteModal)}>
                 Delete
-              </button>
+              </Button>
             </div>
-            <button className="btn btn-primary btn-lg w-100 my-2" onClick={() => setViewReceipts(!viewReceipts)}>
+            <Button variant="primary" className="w-100 my-2" onClick={() => setViewReceipts(!viewReceipts)}>
               View All
-            </button>
+            </Button>
           </div>
         </div>
 
-        {/* Receipts Section */}
+        {/* Delete Modal */}
+
+        {showDeleteModal && 
+            <h1>HEY</h1>
+        }
+
+        {/* Receipts */}
 
         {viewReceipts && receiptData.map((receipt, index) => (
           <div key={index} className="card my-2">
