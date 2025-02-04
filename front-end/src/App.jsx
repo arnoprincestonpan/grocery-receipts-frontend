@@ -13,7 +13,19 @@ function App() {
 
   // Delete Modal States
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const [receiptNumber, setReceiptNumber] = useState("");
+  const [receiptToDelete, setReceiptToDelete] = useState(null);
+
+  const checkReceiptNumber = () => {
+    const foundReceipt = receiptData.find(receipt => receipt.receiptNumber === parseInt(receiptNumber))
+    if(foundReceipt){
+      setReceiptToDelete(foundReceipt);
+      setShowConfirmDeleteModal(true);
+    } else {
+      alert("Receipt not found!");
+    }
+  }
 
   return (
     <>
@@ -118,6 +130,9 @@ function App() {
                 </Modal.Body>
               </Modal.Header>
               <Modal.Footer>
+                <Button variant="secondary" onClick={checkReceiptNumber}>
+                  Submit
+                </Button>
                 <Button variant="danger" onClick={() => setShowDeleteModal(false)}>
                   Close
                 </Button>
