@@ -128,10 +128,55 @@ function App() {
 
         {/* Delete Modal */}
 
-        
+        {showDeleteModal && 
+            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
+              <Modal.Header closeButton>
+                <Modal.Title>Delete Receipt</Modal.Title>
+                <Modal.Body>
+                  <Form>
+                    <Form.Group>
+                      <Form.Label>Receipt Number</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="Enter Receipt Number"
+                        value={receiptNumber}
+                        onChange={(e) => setReceiptNumber(e.target.value)}
+                      />
+                    </Form.Group>
+                  </Form>
+                </Modal.Body>
+              </Modal.Header>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={checkReceiptNumber}>
+                  Submit
+                </Button>
+                <Button variant="danger" onClick={() => setShowDeleteModal(false)}>
+                  Close
+                </Button>
+              </Modal.Footer>
+            </Modal>
+        }
 
         {/* Confirm Delete Modal */}
-        { showConfirmDeleteModal 
+        { showConfirmDeleteModal &&
+          <Modal show={showConfirmDeleteModal} onHide={() => setShowConfirmDeleteModal(false)}>
+            <Modal.Header closeButton>
+              <Modal.Title>
+                Confirm Deletion
+              </Modal.Title>
+              <Modal.Body>
+                <p>Are you sure you want to delete Receipt #: {receiptToDelete.receiptNumber} from Date: {receiptToDelete.date}?</p>
+              </Modal.Body>
+            </Modal.Header>
+            <Modal.Footer>
+              <Button variant="danger" onClick={handleDeleteReceipt}>
+                Delete
+              </Button>
+              <Button variant="secondary" onClick={() => setShowConfirmDeleteModal(false)}>
+                Cancel
+              </Button>
+            </Modal.Footer>
+          </Modal>
         }
 
         {/* Receipts */}
