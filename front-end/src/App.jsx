@@ -12,6 +12,22 @@ function App() {
   const [showViewModal, setShowViewModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
 
+  // Add Modal States
+  const [newReceipt, setNewReceipt] = useState({
+    receiptNumber: '',
+    date: Date.now(),
+    items: [
+    ]
+  });
+
+  // Add Functions
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setNewReceipt({
+      ...newReceipt,
+    })
+  }
+
   // Delete Modal States
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
@@ -79,7 +95,25 @@ function App() {
               <Modal.Header closeButton>
                 <Modal.Title>Add Receipt</Modal.Title>
                 <Modal.Body>
-                  
+                  <Form>
+                    {/* Receipt Number */}
+                    <Form.Group controlId="receiptNumber">
+                      <Form.Label>Receipt Number</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter Receipt Number"
+                      />
+                    </Form.Group>
+                    {/* Date */}
+                    <Form.Group controlId="date">
+                      <Form.Label>Date</Form.Label>
+                      <Form.Control
+                        type="date"
+                        placeholder="Enter Receipt Number"
+                      />
+                    </Form.Group>
+                    {/* Items Section */}
+                  </Form>
                 </Modal.Body>
               </Modal.Header>
               <Modal.Footer>
