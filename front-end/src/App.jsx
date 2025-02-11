@@ -13,20 +13,20 @@ function App() {
   const [showEditModal, setShowEditModal] = useState(false);
 
   // Add Modal States
-  const [newReceipt, setNewReceipt] = useState({
-    receiptNumber: '',
-    date: Date.now(),
-    items: [
-    ]
-  });
+  const [newReceiptNumber, setNewReceiptNumber] = useState(0);
+  const [newDate, setNewDate] = useState(Date.now());
+  const [newItem, setNewItem] = useState(
+    {
+      "name": "",
+      "quantity": 0,
+      "price": 0.00,
+      "gstTax": 5.00,
+      "pstTax": 7.00,
+      "totalPriceBeforeTax": 0.00,
+      "totalPriceAfterTax": 0.00
+    }
+  );
 
-  // Add Functions
-  const handleInputChange = (e) => {
-    const {name, value} = e.target;
-    setNewReceipt({
-      ...newReceipt,
-    })
-  }
 
   // Delete Modal States
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -109,10 +109,48 @@ function App() {
                       <Form.Label>Date</Form.Label>
                       <Form.Control
                         type="date"
-                        placeholder="Enter Receipt Number"
+                        placeholder="Enter Date"
                       />
                     </Form.Group>
                     {/* Items Section */}
+                    <p>Items</p>
+                    <Form.Group>
+                      <Form.Label>Name</Form.Label>
+                      <Form.Control
+                        type="text"
+                        placeholder="Enter Item Name"
+                      />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Quantity</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="Enter Item Quantity"
+                      />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Price</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="Enter Item Price"
+                      />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>P.S.T.
+                        <Form.Control
+                          type="number"
+                          placeholder="B.C. Sales Tax"
+                        />
+                      </Form.Label>
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>G.S.T.
+                        <Form.Control
+                          type="number"
+                          placeholder="Federal Sales Tax"
+                        />
+                      </Form.Label>
+                    </Form.Group>
                   </Form>
                 </Modal.Body>
               </Modal.Header>
