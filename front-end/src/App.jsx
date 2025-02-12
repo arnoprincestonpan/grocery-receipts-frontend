@@ -5,6 +5,15 @@ import { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap'
 
 function App() {
+  const itemObject = {
+      "name": "",
+      "quantity": 0,
+      "price": 0.00,
+      "gstTax": 5.00,
+      "pstTax": 7.00,
+      "totalPriceBeforeTax": 0.00,
+      "totalPriceAfterTax": 0.00
+  }
   const [viewReceipts, setViewReceipts] = useState(false);
   const [myReceipts, setMyReceipts] = useState(receiptData);
 
@@ -15,16 +24,9 @@ function App() {
   // Add Modal States
   const [newReceiptNumber, setNewReceiptNumber] = useState(0);
   const [newDate, setNewDate] = useState(Date.now());
+  const [newItems, setNewItems] = useState([])
   const [newItem, setNewItem] = useState(
-    {
-      "name": "",
-      "quantity": 0,
-      "price": 0.00,
-      "gstTax": 5.00,
-      "pstTax": 7.00,
-      "totalPriceBeforeTax": 0.00,
-      "totalPriceAfterTax": 0.00
-    }
+    itemObject
   );
 
 
@@ -114,6 +116,25 @@ function App() {
                     </Form.Group>
                     {/* Items Section */}
                     <p>Items</p>
+                    {newItems.length !== 0 && 
+                      newItems.map(item => (
+                        <table>
+                          <thead>
+                            <tr>
+                              <th>Name</th>
+                              <th>Quantity</th>
+                              <th>Price</th>
+                              <th>G.S.T.</th>
+                              <th>P.S.T.</th>
+                              <th>Total</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              <td></td>
+                          </tbody>
+                        </table>
+                      ))
+                    }
                     <Form.Group>
                       <Form.Label>Name</Form.Label>
                       <Form.Control
