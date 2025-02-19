@@ -35,7 +35,7 @@ function App() {
   const [receiptToDelete, setReceiptToDelete] = useState(null);
 
   const checkReceiptNumber = () => {
-    const foundReceipt = myReceipts.find(receipt => receipt.receiptNumber === parseInt(receiptNumber))
+    const foundReceipt = myReceipts.find(receipt => receipt.receiptNumber === receiptNumber)
     if(foundReceipt){
       setReceiptToDelete(foundReceipt);
       setShowConfirmDeleteModal(true);
@@ -187,7 +187,16 @@ function App() {
               <Modal.Header closeButton>
                 <Modal.Title>Edit Receipt</Modal.Title>
                 <Modal.Body>
-                  
+                  <Form>
+                    <Form.Group>
+                      <Form.Label>Receipt Number</Form.Label>
+                      <Form.Control
+                        type="number"
+                        placeholder="Enter Receipt Number"
+                        value={receiptNumber}
+                      />
+                    </Form.Group>
+                  </Form>
                 </Modal.Body>
               </Modal.Header>
               <Modal.Footer>
@@ -212,7 +221,7 @@ function App() {
                         type="number"
                         placeholder="Enter Receipt Number"
                         value={receiptNumber}
-                        onChange={(e) => setReceiptNumber(e.target.value)}
+                        onChange={(e) => setReceiptNumber(Number(e.target.value))}
                       />
                     </Form.Group>
                   </Form>
